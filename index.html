@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeBus - Book Bus Tickets Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-bus"></i>
+                <h1>TimeBus</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">My Bookings</a></li>
+                    <li><a href="#footer">Contact Us</a></li>
+                    <li><a href="#" id="loginBtn">Login</a></li>
+                    <li><a href="print_ticket.html" target="_blank">Print Ticket</a></li>
+
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>India's Upcoming #1 Bus Ticket Booking Platform</h2>
+                    <p>Book bus tickets to over 5000+ destinations across India with the best prices and offers.</p>
+                </div>
+                <div class="search-box">
+                    <h3>Book Your Bus Tickets</h3>
+                    <form id="searchForm">
+                        <div class="form-group">
+                            <label for="from">From</label>
+                            <select id="from" required>
+                                <option value="">Select Source City</option>
+                                <option value="BOM">Mumbai</option>
+                                <option value="DEL">Delhi</option>
+                                <option value="BLR">Bangalore</option>
+                                <option value="MAA">Chennai</option>
+                                <option value="CCU">Kolkata</option>
+                                <option value="HYD">Hyderabad</option>
+                                <option value="PNQ">Pune</option>
+                                <option value="AMD">Ahmedabad</option>
+                                <option value="JAI">Jaipur</option>
+                                <option value="COK">Kochi</option>
+                                <option value="GOI">Goa</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="to">To</label>
+                            <select id="to" required>
+                                <option value="">Select Destination City</option>
+                                <option value="BOM">Mumbai</option>
+                                <option value="DEL">Delhi</option>
+                                <option value="BLR">Bangalore</option>
+                                <option value="MAA">Chennai</option>
+                                <option value="CCU">Kolkata</option>
+                                <option value="HYD">Hyderabad</option>
+                                <option value="PNQ">Pune</option>
+                                <option value="AMD">Ahmedabad</option>
+                                <option value="JAI">Jaipur</option>
+                                <option value="COK">Kochi</option>
+                                <option value="GOI">Goa</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Travel Date</label>
+                            <input type="date" id="date" required min="2025-03-09">
+                        </div>
+                         <button type="submit" class="btn-search" onclick="searchBuses()">Search Buses
+                        <div class="loading" id="loading" style="display: none;">🔄 Searching for available buses...</div>
+                         <div class="bus-list" id="busList" style="display: none;"></div></button>
+
+                    </form>
+                </div>
+            </section>
+
+            <section class="features">
+                <h2>Why Choose TimeBus?</h2>
+                <div class="features-container">
+                    <div class="feature-card">
+                        <div class="feature-icon bg-orange">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <h3>5000+ Routes</h3>
+                        <p>Connecting all major cities and towns across India</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon bg-green">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <h3>Zero Booking Fees</h3>
+                        <p>No hidden charges or booking fees on any transactions</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon bg-blue">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <h3>Instant Confirmation</h3>
+                        <p>Get e-tickets instantly after booking confirmation</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon bg-purple">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>24/7 Support</h3>
+                        <p>Round-the-clock customer service for all your queries</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="popular-routes">
+                <h2>Popular Bus Routes</h2>
+                <div class="routes-container">
+                    <div class="route-card">
+                        <div class="cities">
+                            <span>Mumbai</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Pune</span>
+                        </div>
+                        <div class="route-info">
+                            <div>
+                                <span class="info-label">Distance</span>
+                                <span class="info-value">150 km</span>
+                            </div>
+                            <div>
+                                <span class="info-label">Duration</span>
+                                <span class="info-value">3h 00m</span>
+                            </div>
+                            <div>
+                                <span class="info-label">From</span>
+                                <span class="info-value">₹400</span>
+                            </div>
+                        </div>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                    <div class="route-card">
+                        <div class="cities">
+                            <span>Delhi</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Jaipur</span>
+                        </div>
+                        <div class="route-info">
+                            <div>
+                                <span class="info-label">Distance</span>
+                                <span class="info-value">280 km</span>
+                            </div>
+                            <div>
+                                <span class="info-label">Duration</span>
+                                <span class="info-value">5h 00m</span>
+                            </div>
+                            <div>
+                                <span class="info-label">From</span>
+                                <span class="info-value">₹650</span>
+                            </div>
+                        </div>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                    <div class="route-card">
+                        <div class="cities">
+                            <span>Bangalore</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Chennai</span>
+                        </div>
+                        <div class="route-info">
+                            <div>
+                                <span class="info-label">Distance</span>
+                                <span class="info-value">350 km</span>
+                            </div>
+                            <div>
+                                <span class="info-label">Duration</span>
+                                <span class="info-value">6h 00m</span>
+                            </div>
+                            <div>
+                                <span class="info-label">From</span>
+                                <span class="info-value">₹800</span>
+                            </div>
+                        </div>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                    <div class="route-card">
+                        <div class="cities">
+                            <span>Delhi</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Chandigarh</span>
+                        </div>
+                        <div class="route-info">
+                            <div>
+                                <span class="info-label">Distance</span>
+                                <span class="info-value">250 km</span>
+                            </div>
+                            <div>
+                                <span class="info-label">Duration</span>
+                                <span class="info-value">5h 00m</span>
+                            </div>
+                            <div>
+                                <span class="info-label">From</span>
+                                <span class="info-value">₹600</span>
+                            </div>
+                        </div>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="operators">
+                <h2>Top Bus Operators</h2>
+                <div class="operators-container">
+                    <div class="operator">
+                        <h3>KSRTC Premium</h3>
+                        <div class="operator-features">
+                            <span class="operator-feature"><i class="fas fa-wifi"></i> WiFi</span>
+                            <span class="operator-feature"><i class="fas fa-snowflake"></i> AC</span>
+                            <span class="operator-feature"><i class="fas fa-charging-station"></i> USB</span>
+                        </div>
+                    </div>
+                    <div class="operator">
+                        <h3>MSRTC Shivneri</h3>
+                        <div class="operator-features">
+                            <span class="operator-feature"><i class="fas fa-wifi"></i> WiFi</span>
+                            <span class="operator-feature"><i class="fas fa-snowflake"></i> AC</span>
+                            <span class="operator-feature"><i class="fas fa-charging-station"></i> USB</span>
+                        </div>
+                    </div>
+                    <div class="operator">
+                        <h3>FlixBus Volvo</h3>
+                        <div class="operator-features">
+                            <span class="operator-feature"><i class="fas fa-wifi"></i> WiFi</span>
+                            <span class="operator-feature"><i class="fas fa-snowflake"></i> AC</span>
+                            <span class="operator-feature"><i class="fas fa-charging-station"></i> USB</span>
+                        </div>
+                    </div>
+                    <div class="operator">
+                        <h3>VRL Travels</h3>
+                        <div class="operator-features">
+                            <span class="operator-feature"><i class="fas fa-wifi"></i> WiFi</span>
+                            <span class="operator-feature"><i class="fas fa-snowflake"></i> AC</span>
+                            <span class="operator-feature"><i class="fas fa-charging-station"></i> USB</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li><a href="#">Time Bus – Your trusted travel partner for easy, fast, and secure bus bookings. Enjoy seamless ticketing, real-time updates, and a hassle-free journey! 🚍✨</a></li>
+                        
+                        
+                        
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i><a href="https://wa.me/919442812555" 
+       target="_blank" rel="noopener noreferrer" 
+       style="color: #003366; font-weight: bold;"> +91 9442812555</p>
+                    <p><i class="fas fa-envelope"></i><a href="https://mail.google.com/mail/?view=cm&fs=1&to=support@timebus.com" 
+       target="_blank" rel="noopener noreferrer" > support@timebus.com</p></a>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" style="color: #003366; "><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <footer id="footer">
+                <div class="footer-content">
+                    <p>&copy; 2025 IndiaBus. All Rights Reserved.</p>
+             </div>
+           </footer>
+
+            
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-tabs">
+                <div class="tab-header">
+                    <div class="tab-btn active" data-tab="login">Login</div>
+                    <div class="tab-btn" data-tab="register">Register</div>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="login-pane">
+                        <h2>Login to your account</h2>
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="username" placeholder="Enter your username" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="password" placeholder="Enter your password" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary">Login</button>
+                        </form>
+                        <div class="auth-footer">
+                            <p>Don't have an account? <a href="#" class="switch-tab" data-tab="register">Register now</a></p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="register-pane">
+                        <h2>Create an account</h2>
+                        <form id="registerForm">
+                            <div class="form-group">
+                                <label for="reg-fullname">Full Name</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user-circle"></i>
+                                    <input type="text" id="reg-fullname" placeholder="Enter your full name" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-email">Email</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="reg-email" placeholder="Enter your email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-username">Username</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="reg-username" placeholder="Choose a username" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-phone">Mobile Number</label>
+                                <div class="input-with-icon">
+                                    <span class="country-code">+91</span>
+                                    <input type="tel" id="reg-phone" placeholder="10-digit mobile number" required pattern="[0-9]{10}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-city">City</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <input type="text" id="reg-city" placeholder="Your city" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-password">Password</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="reg-password" placeholder="Create a password" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary">Register</button>
+                        </form>
+                        <div class="auth-footer">
+                            <p>Already have an account? <a href="#" class="switch-tab" data-tab="login">Login instead</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
